@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/McMenemy/GoDoRP_stack/routes"
+	"github.com/McMenemy/GoDoRP_stack/api/routes"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
@@ -11,8 +11,6 @@ import (
 func main() {
 	router := httprouter.New()
 	router.GET("/", routes.IndexHandler)
-	router.OPTIONS("/*any", routes.CorsHandler)
-	router.POST("/align", routes.AlignHandler)
 
 	env := os.Getenv("APP_ENV")
 	if env == "production" {
