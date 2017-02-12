@@ -9,6 +9,9 @@ ENV APP_ENV $app_env
 COPY . /go/src/github.com/McMenemy/GoDoRP_stack/api
 WORKDIR /go/src/github.com/McMenemy/GoDoRP_stack/api
 
+# added vendor services will need to be included here
+RUN go get ./vendor/database
+
 RUN go get github.com/McMenemy/GoDoRP_stack/api
 RUN go build
 

@@ -1,21 +1,31 @@
 package main
 
 import (
-	"github.com/McMenemy/GoDoRP_stack/api/routes"
-	"github.com/McMenemy/GoDoRP_stack/api/services/database"
+	"database"
+	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
 	"os"
 )
 
+func dbTestHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	var lastDorp database.Dorp
+	database.DB.Last(&lastDorp)
+	fmt.Fprintf(w, "Author : %s, Message: %s", lastDorp.Author, lastDorp.Message)
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprintf(w, "This is the RESTful api")
+}
+
 func main() {
 	defer database.DB.Close()
 
 	// add router and routes
 	router := httprouter.New()
-	router.GET("/", routes.IndexHandler)
-	router.GET("/dbTest", routes.DbTestHandler)
+	router.GET("/", indexHandler)
+	router.GET("/dbTest", dbTestHandler)
 
 	// add database
 	_, err := database.Init()
