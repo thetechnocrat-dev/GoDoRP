@@ -23,6 +23,7 @@ $ cd myApp
 $ git clone https://github.com/McMenemy/GoDoRP_stack.git .
 $ docker-compose up
 ```
+Then you can open the React frontend at localhost:3000 and the RESTful GoLang API at localhost:5000
 
 Then to build production images run:
 ```bash
