@@ -1,3 +1,19 @@
+# dependencies
+/node_modules
+
+# postgres data
+db/pgdata
+
+# testing
+/coverage
+
+# production
+frontend/build
+api/tmp
+
 # misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .DS_Store
 .env

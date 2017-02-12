@@ -1,0 +1,34 @@
+version: '2'
+services:
+  db:
+    build: ./db
+    volumes:
+      - ./db/pgdata:/pgdata
+    ports:
+      - "5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - PGDATA=/pgdata
+
+  api:
+    build:
+      context: ./api
+      args:
+        app_env: ${APP_ENV}
+    volumes:
+      - ./api:/go/src/github.com/McMenemy/GoDoRP_stack/api
+    ports:
+      - "5000:8080"
+    links:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        app_env: ${APP_ENV}
+    volumes:
+      - ./frontend/app/src:/app/src 
+    ports:
+      - "3000:3000"
