@@ -11,10 +11,13 @@ import (
 
 func main() {
 	defer database.DB.Close()
+
+	// add router and routes
 	router := httprouter.New()
 	router.GET("/", routes.IndexHandler)
 	router.GET("/dbTest", routes.DbTestHandler)
 
+	// add database
 	_, err := database.Init()
 	if err != nil {
 		log.Println("connection to DB failed, aborting...")
@@ -23,6 +26,7 @@ func main() {
 
 	log.Println("connected to DB")
 
+	// print env
 	env := os.Getenv("APP_ENV")
 	if env == "production" {
 		log.Println("Running api server in production mode")
