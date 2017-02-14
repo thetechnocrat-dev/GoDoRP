@@ -14,12 +14,12 @@ script:
 
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker build ./api -t mcmenemy/GoDoRP_api:latest
-  - docker push mcmenemy/GoDoRP_api:latest
-  - docker build ./frontend -t mcmenemy/GoDoRP_frontend:latest
-  - docker push mcmenemy/GoDoRP_frontend:latest
-  - docker build ./db -t mcmenemy/GoDoRP_db:latest
-  - docker push mcmenemy/GoDoRP_db:latest
+  - docker build ./api -t mcmenemy/godorp_api:latest
+  - docker push mcmenemy/godorp_api:latest
+  - docker build ./frontend -t mcmenemy/godorp_frontend:latest
+  - docker push mcmenemy/godorp_frontend:latest
+  - docker build ./db -t mcmenemy/godorp_db:latest
+  - docker push mcmenemy/godorp_db:latest
 
 env:
   global:
