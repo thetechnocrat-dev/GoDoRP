@@ -1,6 +1,4 @@
 # GoDoRP_stack
-[![Build Status](https://travis-ci.org/McMenemy/GoDoRP_stack.svg?branch=master)](https://travis-ci.org/McMenemy/GoDoRP_stack)
-
 GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy development.
 
 ## Features
