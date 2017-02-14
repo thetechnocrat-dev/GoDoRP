@@ -4,6 +4,7 @@ go:
 
 services:
   - docker
+
 install:
   - go get ./api/vendor/database
   - go get ./api
