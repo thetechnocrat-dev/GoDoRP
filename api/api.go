@@ -92,6 +92,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintf(w, "This is the RESTful api")
 }
 
+// Temporary Canary test to make sure Travis-CI is working
+func Canary(word string) string {
+	return word
+}
+
 func main() {
 	defer database.DB.Close()
 

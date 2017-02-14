@@ -1,0 +1,8 @@
+language: go
+go:
+  - master
+install:
+  - go get ./api
+script:
+  - cd ./api
+  - go test
