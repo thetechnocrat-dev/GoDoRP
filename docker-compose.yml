@@ -17,7 +17,7 @@ services:
       args:
         app_env: ${APP_ENV}
     volumes:
-      - ./api:/go/src/github.com/McMenemy/GoDoRP_stack/api
+      - ./api:/go/src/github.com/user/GoDoRP_stack/api
     ports:
       - "5000:8080"
     links:

@@ -6,16 +6,15 @@ FROM golang
 ARG app_env
 ENV APP_ENV $app_env
 
-COPY . /go/src/github.com/McMenemy/GoDoRP_stack/api
-WORKDIR /go/src/github.com/McMenemy/GoDoRP_stack/api
+# it is okay to leave user/GoDoRP_stack as long as you do not want to share code with other libraries
+COPY . /go/src/github.com/user/GoDoRP_stack/api
+WORKDIR /go/src/github.com/user/GoDoRP_stack/api
 
 # added vendor services will need to be included here
 RUN go get ./vendor/database
 
-RUN go get github.com/McMenemy/GoDoRP_stack/api
+RUN go get ./
 RUN go build
-
-RUN export ENV=${ENV}
 
 # if dev setting will use pilu/fresh for code reloading via docker-compose volume sharing with local machine
 # if production setting will build binary
