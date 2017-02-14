@@ -3,12 +3,12 @@ GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy deve
 
 ## Features
 * Start a GoDoRP project with one command on any computer with docker-compose installed
-* Dev mode features hot reloading on code changes for both the goLang backend and React frontend (no need to rebuild containers while coding)
+* Dev mode features hot reloading on code changes for both the GoLang backend and React frontend (no need to rebuild containers while coding)
 * Production mode features optimized static React frontend and binary goLang backend
 * Production images built by passing a single arg option (images can then run on any computer with Docker)
 
 ## Benifits
-* Anyone can contribute to your project locally without having to setup goPath, Postgres, node etc
+* Anyone can contribute to your project locally without having to setup/install GOPATH, Postgres, node etc
 * Dev enviroment is the same as production enviroment
 * Quickly get your GoDoRP project off the ground
 * Forking the repo allows for customization of the template for your prefereances
@@ -23,6 +23,9 @@ $ cd myApp
 $ git clone https://github.com/McMenemy/GoDoRP_stack.git .
 $ docker-compose up
 ```
+Then you can open the React frontend at localhost:3000 and the RESTful GoLang API at localhost:5000
+
+Changing any frontend (React) code locally will cause a hot-reload in the browser with updates and changing any backend (GoLang) code locally just requires refreshing the browser.
 
 Then to build production images run:
 ```bash
