@@ -1,6 +1,8 @@
 # GoDoRP_stack
 GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy development.
 
+test Travis-CI
+
 ## Features
 * Start a GoDoRP project with one command on any computer with docker-compose installed
 * Dev mode features hot reloading on code changes for both the GoLang backend and React frontend (no need to rebuild containers while coding)
