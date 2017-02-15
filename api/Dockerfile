@@ -6,9 +6,9 @@ FROM golang
 ARG app_env
 ENV APP_ENV $app_env
 
-# it is okay to leave user/GoDoRP_stack as long as you do not want to share code with other libraries
-COPY . /go/src/github.com/user/GoDoRP_stack/api
-WORKDIR /go/src/github.com/user/GoDoRP_stack/api
+# it is okay to leave user/GoDoRP as long as you do not want to share code with other libraries
+COPY . /go/src/github.com/user/GoDoRP/api
+WORKDIR /go/src/github.com/user/GoDoRP/api
 
 # added vendor services will need to be included here
 RUN go get ./vendor/database

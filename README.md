@@ -1,4 +1,4 @@
-# GoDoRP_stack
+# GoDoRP
 GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy development.
 
 ## Features
@@ -20,7 +20,7 @@ Then run the following commands:
 ```bash
 $ mkdir myApp
 $ cd myApp
-$ git clone https://github.com/McMenemy/GoDoRP_stack.git .
+$ git clone https://github.com/McMenemy/GoDoRP.git .
 $ docker-compose up
 ```
 Then you can open the React frontend at localhost:3000 and the RESTful GoLang API at localhost:5000
