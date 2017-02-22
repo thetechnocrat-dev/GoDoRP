@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "max-len": [1, 120, 2, {ignoreComments: true}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-param-reassign": ["error", { "props": false }],
+		"import/no-unresolved": "off",
+		"import/extensions": "off",
+		"react/no-find-dom-node": "off",
+		"react/no-string-refs": "off",
+		"react/jsx-no-bind": "off",
+		"jsx-a11y/no-static-element-interactions": "off"
+  },
+  "globals": {
+    "window": true,
+		"document": true,
+  }
+}
