@@ -29,6 +29,6 @@ services:
       args:
         app_env: ${APP_ENV}
     volumes:
-      - ./frontend/app/src:/app/src 
+      - ./frontend/src:/frontend/src 
     ports:
       - "3000:3000"
