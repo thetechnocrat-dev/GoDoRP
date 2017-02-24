@@ -9,7 +9,7 @@ import (
 var DB *gorm.DB
 var err error
 
-type Dorp struct {
+type Post struct {
 	gorm.Model
 	Author  string
 	Message string
@@ -45,12 +45,12 @@ func Init() (*gorm.DB, error) {
 	}
 
 	// create table if it does not exist
-	if !DB.HasTable(&Dorp{}) {
-		DB.CreateTable(&Dorp{})
+	if !DB.HasTable(&Post{}) {
+		DB.CreateTable(&Post{})
 	}
 
-	testDorp := Dorp{Author: "Dorper", Message: "GoDoRP is Dope"}
-	DB.Create(&testDorp)
+	testPost := Post{Author: "Dorper", Message: "GoDoRP is Dope"}
+	DB.Create(&testPost)
 
 	return DB, err
 }
