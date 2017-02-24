@@ -11,17 +11,17 @@ import (
 )
 
 // CRUD Route Handlers
-func createDorpHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func createPostHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	setCors(w)
 	decoder := json.NewDecoder(r.Body)
-	var newDorp database.Dorp
-	if err := decoder.Decode(&newDorp); err != nil {
+	var newPost database.Post
+	if err := decoder.Decode(&newPost); err != nil {
 		http.Error(w, err.Error(), 400)
 		return
 	}
 
-	database.DB.Create(&newDorp)
-	res, err := json.Marshal(newDorp)
+	database.DB.Create(&newPost)
+	res, err := json.Marshal(newPost)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
@@ -30,11 +30,11 @@ func createDorpHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	w.Write(res)
 }
 
-func deleteDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func deletePostHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	setCors(w)
-	var deletedDorp database.Dorp
-	database.DB.Where("ID = ?", ps.ByName("dorpId")).Delete(&deletedDorp) // write now this returns a blank item not the deleted item
-	res, err := json.Marshal(deletedDorp)
+	var deletedPost database.Post
+	database.DB.Where("ID = ?", ps.ByName("postId")).Delete(&deletedPost) // write now this returns a blank item not the deleted item
+	res, err := json.Marshal(deletedPost)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 	}
@@ -42,7 +42,7 @@ func deleteDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	w.Write(res)
 }
 
-func updateDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func updatePostHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	setCors(w)
 	type body struct {
 		Author  string
@@ -54,12 +54,12 @@ func updateDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 		http.Error(w, err.Error(), 400)
 	}
 
-	var updatedDorp database.Dorp
-	database.DB.Where("ID = ?", ps.ByName("dorpId")).First(&updatedDorp)
-	updatedDorp.Author = updates.Author
-	updatedDorp.Message = updates.Message
-	database.DB.Save(&updatedDorp)
-	res, err := json.Marshal(updatedDorp)
+	var updatedPost database.Post
+	database.DB.Where("ID = ?", ps.ByName("postId")).First(&updatedPost)
+	updatedPost.Author = updates.Author
+	updatedPost.Message = updates.Message
+	database.DB.Save(&updatedPost)
+	res, err := json.Marshal(updatedPost)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 	}
@@ -67,11 +67,11 @@ func updateDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	w.Write(res)
 }
 
-func showDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func showPostHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	setCors(w)
-	var dorp database.Dorp
-	database.DB.Where("ID = ?", ps.ByName("dorpId")).First(&dorp)
-	res, err := json.Marshal(dorp)
+	var post database.Post
+	database.DB.Where("ID = ?", ps.ByName("postId")).First(&post)
+	res, err := json.Marshal(post)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
@@ -80,11 +80,11 @@ func showDorpHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Param
 	w.Write(res)
 }
 
-func indexDorpHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func indexPostHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	setCors(w)
-	var dorps []database.Dorp
-	database.DB.Find(&dorps)
-	res, err := json.Marshal(dorps)
+	var posts []database.Post
+	database.DB.Find(&posts)
+	res, err := json.Marshal(posts)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
@@ -130,11 +130,11 @@ func main() {
 	// add router and routes
 	router := httprouter.New()
 	router.GET("/", indexHandler)
-	router.POST("/dorps", createDorpHandler)
-	router.GET("/dorps/:dorpId", showDorpHandler)
-	router.DELETE("/dorps/:dorpId", deleteDorpHandler)
-	router.PUT("/dorps/:dorpId", updateDorpHandler)
-	router.GET("/dorps", indexDorpHandler)
+	router.POST("/posts", createPostHandler)
+	router.GET("/posts/:postId", showPostHandler)
+	router.DELETE("/posts/:postId", deletePostHandler)
+	router.PUT("/posts/:postId", updatePostHandler)
+	router.GET("/posts", indexPostHandler)
 	router.OPTIONS("/*any", corsHandler)
 
 	// add database

@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap/lib';
 import axios from 'axios';
 import Urls from '../util/Urls.js';
 
-class DorpRow extends Component {
+class PostRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,17 +22,17 @@ class DorpRow extends Component {
     });
   }
 
-  deleteDorp() {
-    const { removeDorp, index, dorp, addError, clearErrors } = this.props;
+  deletePost() {
+    const { removePost, index, post, addError, clearErrors } = this.props;
     clearErrors();
     this.setState({
       isEditDisabled: true,
       isDeleteLoading: true,
       isDeleteDisabled: false,
     });
-    axios.delete(`${Urls.api}/dorps/${dorp.ID}`)
+    axios.delete(`${Urls.api}/posts/${post.ID}`)
       .then(() => {
-        removeDorp(index);
+        removePost(index);
         this.resetButtonsState();
       },
     )
@@ -51,20 +51,22 @@ class DorpRow extends Component {
       return <Button bsStyle="danger" disabled>Delete</Button>;
     }
 
-    return <Button bsStyle="danger" onClick={this.deleteDorp.bind(this)}>Delete</Button>;
+    return <Button bsStyle="danger" onClick={this.deletePost.bind(this)}>Delete</Button>;
   }
 
   makeEditButton() {
     const { isEditDisabled } = this.state;
-    return <Button disabled={isEditDisabled}>{isEditDisabled ? 'Editing...' : 'Edit'}</Button>;
+    const buttonStyle = { marginRight: '10px' };
+    // edit not fully implemented yet
+    return <Button style={buttonStyle} disabled>{isEditDisabled ? 'Editing...' : 'Edit'}</Button>;
   }
 
   render() {
-    const { dorp } = this.props;
+    const { post } = this.props;
     return (
       <tr>
-        <td>{dorp.Author}</td>
-        <td>{dorp.Message}</td>
+        <td>{post.Author}</td>
+        <td>{post.Message}</td>
         <td>
           {this.makeEditButton()}
           {this.makeDeleteButton()}
@@ -74,16 +76,16 @@ class DorpRow extends Component {
   }
 }
 
-DorpRow.propTypes = {
-  dorp: PropTypes.shape({
+PostRow.propTypes = {
+  post: PropTypes.shape({
     Author: PropTypes.string.isRequired,
     Message: PropTypes.string.isRequired,
     ID: PropTypes.number.isRequired,
   }),
-  removeDorp: PropTypes.func.isRequired,
+  removePost: PropTypes.func.isRequired,
   addError: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
 };
 
-export default DorpRow;
+export default PostRow;

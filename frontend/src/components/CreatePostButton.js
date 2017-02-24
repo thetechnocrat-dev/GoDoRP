@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Modal, FormGroup, ControlLabel, FormControl, Alert } from 'react-bootstrap/lib';
 import Urls from '../util/Urls.js';
 
-class CreateMessageButton extends Component {
+class CreatePostButton extends Component {
   constructor(props) {
     super(props);
     this.state = { showModal: false, author: '', message: '', isLoading: false, errors: [] };
@@ -36,17 +36,17 @@ class CreateMessageButton extends Component {
     return errors;
   }
 
-  createMessage() {
+  createPost() {
     const { author, message } = this.state;
     this.setState({ isLoading: true, errors: [] });
     const errors = this.checkInput();
     if (errors.length === 0) {
-      axios.post(`${Urls.api}/dorps`, {
+      axios.post(`${Urls.api}/posts`, {
         Author: author,
         Message: message,
       })
         .then((res) => {
-          this.props.addDorp(res.data);
+          this.props.addPost(res.data);
           this.setState({ isLoading: false, author: '', message: '', showModal: false, errors: [] });
         },
       )
@@ -76,10 +76,10 @@ class CreateMessageButton extends Component {
     const { showModal, isLoading } = this.state;
     return (
       <div>
-        <Button onClick={this.open.bind(this)}>Create Message</Button>
+        <Button bsStyle="primary" onClick={this.open.bind(this)}>Create Post</Button>
         <Modal show={showModal} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
-            <Modal.Title>Create Message</Modal.Title>
+            <Modal.Title>Create Post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {this.makeModalErrors()}
@@ -106,7 +106,7 @@ class CreateMessageButton extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              onClick={this.createMessage.bind(this)}
+              onClick={this.createPost.bind(this)}
               disabled={isLoading}
             >
               {isLoading ? 'Submitting...' : 'Submit'}
@@ -118,8 +118,8 @@ class CreateMessageButton extends Component {
   }
 }
 
-CreateMessageButton.propTypes = {
-  addDorp: PropTypes.func.isRequired,
+CreatePostButton.propTypes = {
+  addPost: PropTypes.func.isRequired,
 };
 
-export default CreateMessageButton;
+export default CreatePostButton;

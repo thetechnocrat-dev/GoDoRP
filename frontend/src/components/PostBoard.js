@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, Alert } from 'react-bootstrap/lib';
-import DorpRow from './DorpRow';
+import PostRow from './PostRow';
 
-class DorpMessageBoard extends Component {
+class PostBoard extends Component {
   constructor(props) {
     super(props);
     this.state = { error: '' };
@@ -16,14 +16,14 @@ class DorpMessageBoard extends Component {
     this.setState({ error: '' });
   }
 
-  makeDorpRows() {
-    const { removeDorp } = this.props;
-    return this.props.dorps.map((dorp, i) =>
-      <DorpRow
+  makePostRows() {
+    const { removePost, posts } = this.props;
+    return posts.map((post, i) =>
+      <PostRow
         key={i}
         index={i}
-        dorp={dorp}
-        removeDorp={removeDorp}
+        post={post}
+        removePost={removePost}
         addError={this.addError.bind(this)}
         clearErrors={this.clearErrors.bind(this)}
       />,
@@ -41,7 +41,7 @@ class DorpMessageBoard extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginTop: '10px' }}>
         {this.makeError()}
         <Table striped bordered condensed hover>
           <thead>
@@ -52,7 +52,7 @@ class DorpMessageBoard extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.makeDorpRows()}
+            {this.makePostRows()}
           </tbody>
         </Table>
       </div>
@@ -60,9 +60,9 @@ class DorpMessageBoard extends Component {
   }
 }
 
-DorpMessageBoard.propTypes = {
-  dorps: PropTypes.arrayOf(PropTypes.object),
-  removeDorp: PropTypes.func.isRequired,
+PostBoard.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object),
+  removePost: PropTypes.func.isRequired,
 };
 
-export default DorpMessageBoard;
+export default PostBoard;
