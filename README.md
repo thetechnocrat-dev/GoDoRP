@@ -7,7 +7,7 @@ GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy deve
 * Production mode features optimized static React frontend and binary goLang backend
 * Production images built by passing a single arg option (images can then run on any computer with Docker)
 
-## Benifits
+## Benefits
 * Anyone can contribute to your project locally without having to setup/install GOPATH, Postgres, node etc
 * Dev enviroment is the same as production enviroment
 * Quickly get your GoDoRP project off the ground
