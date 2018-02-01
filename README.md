@@ -1,5 +1,7 @@
 # GoDoRP
-GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy development.
+GoDoRP (Golang, Docker, React, Postgres) project starter.
+
+Disclaimer: This project is not actively supported and not recommended for production apps. Hope it serves as a learning resource.
 
 ## Features
 * Start a GoDoRP project with one command on any computer with docker-compose installed
