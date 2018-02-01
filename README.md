@@ -11,9 +11,9 @@ Disclaimer: This project is not actively supported and not recommended for produ
 
 ## Benefits
 * Anyone can contribute to your project locally without having to setup/install GOPATH, Postgres, node etc
-* Dev enviroment is the same as production enviroment
+* Dev environment is the same as production environment
 * Quickly get your GoDoRP project off the ground
-* Forking the repo allows for customization of the template for your prefereances
+* Forking the repo allows for customization of the template for your preferences
 
 ## Getting started:
 * download [docker-compose](https://docs.docker.com/compose/install/) if not already installed
@@ -27,7 +27,7 @@ $ docker-compose up
 ```
 Then you can open the React frontend at localhost:3000 and the RESTful GoLang API at localhost:5000
 
-Changing any frontend (React) code locally will cause a hot-reload in the browser with updates and changing any backend (GoLang) code locally will also automatilly update any changes.
+Changing any frontend (React) code locally will cause a hot-reload in the browser with updates and changing any backend (GoLang) code locally will also automatically update any changes.
 
 Then to build production images run:
 ```bash
